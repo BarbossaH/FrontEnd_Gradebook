@@ -37,7 +37,8 @@ const Students = () => {
       ) : (
         <>
           {students.map((student) => {
-            return <p key={student.id}>{student.name}</p>;
+            console.log(student);
+            return <p key={student.id}>{student.first_name}</p>;
           })}
         </>
       )}

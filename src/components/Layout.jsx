@@ -2,6 +2,7 @@
 import Login from './Login';
 import Menu from './Menu';
 import Students from './Students';
+import UploadFile from './UploadFile';
 
 const Layout = (props) => {
   return (
@@ -10,6 +11,7 @@ const Layout = (props) => {
       <Login />
       <Students />
       {/* <Header /> */}
+      <UploadFile />
       {props.children}
     </div>
   );

@@ -24,7 +24,7 @@ const Login = () => {
     // const axios = require('axios');
     let data = JSON.stringify({
       username: 'Julian',
-      password: 'xuexih8150',
+      password: 'xuexih123',
     });
     let config = {
       method: 'POST',
