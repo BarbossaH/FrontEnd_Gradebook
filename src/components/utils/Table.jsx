@@ -1,4 +1,7 @@
 const Table = ({ data }) => {
+  if (!data.length) {
+    return <p>No data</p>;
+  }
   const columnNames = Object.keys(data[0]);
   return (
     <table className="table table-striped">
