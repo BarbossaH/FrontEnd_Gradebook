@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table from './utils/Table';
-const Students = () => {
+const Lecturers = () => {
   const [token, setToken] = useState('');
-  const [students, setStudents] = useState([]);
+  const [lecturers, setLecturers] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setToken(localStorage.getItem('token'));
@@ -13,7 +13,7 @@ const Students = () => {
       let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: 'http://127.0.0.1:8000/api/students/',
+        url: 'http://127.0.0.1:8000/api/lecturers/',
         headers: {
           Authorization: 'token ' + token,
         },
@@ -21,7 +21,7 @@ const Students = () => {
       axios
         .request(config)
         .then((response) => {
-          setStudents(response.data);
+          setLecturers(response.data);
           setLoading(false);
           // console.log(JSON.stringify(response.data));
         })
@@ -31,6 +31,6 @@ const Students = () => {
     }
   }, [token]);
 
-  return <div>{loading ? <p>Loading...</p> : <Table data={students} />}</div>;
+  return <div>{loading ? <p>Loading...</p> : <Table data={lecturers} />}</div>;
 };
-export default Students;
+export default Lecturers;

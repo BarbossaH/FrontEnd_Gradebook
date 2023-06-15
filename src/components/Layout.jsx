@@ -7,11 +7,11 @@ import UploadFile from './UploadFile';
 const Layout = (props) => {
   return (
     <div>
-      <Menu />
+      {/* <Menu />
       <Login />
-      <Students />
+      <Students /> */}
       {/* <Header /> */}
-      <UploadFile />
+      {/* <UploadFile /> */}
       {props.children}
     </div>
   );

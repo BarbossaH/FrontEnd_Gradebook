@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import Menu from './Menu';
 import MyComponent from './MyCompenent';
 // import Nav from './Nav';
@@ -5,7 +6,8 @@ import MyComponent from './MyCompenent';
 const Home = () => {
   return (
     <div>
-      nothing
+      <Menu />
+      <Outlet />
       {/* <MyComponent /> */}
     </div>
   );
