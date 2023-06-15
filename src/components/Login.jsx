@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState(''); // [1
-
+  const navigate = useNavigate();
   useEffect(() => {
     setToken(localStorage.getItem('token'));
     // if (token) {
@@ -42,6 +43,7 @@ const Login = () => {
         console.log(JSON.stringify(response.data.token));
         setToken(response.data.token);
         localStorage.setItem('token', response.data.token);
+        navigate('/');
       })
       .catch((error) => {
         console.log(error);

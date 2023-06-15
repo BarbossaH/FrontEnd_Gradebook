@@ -16,9 +16,9 @@ function App() {
     <div className="container">
       <Layout>
         <Routes>
-          {/* <Route path="/" element={<Home />}> */}
+          <Route path="/login" element={<Login />} />
           <Route path="/">
-            <Route index element={<Login />} />
+            <Route index element={<Enrollment />} />
             <Route path="upload" element={<UploadFile />} />
             <Route path="/students" element={<Students />} />
             <Route path="/lecturers" element={<Lecturers />} />

@@ -1,8 +1,23 @@
+import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from 'react-router-dom';
 const Menu = () => {
+  const [token, setToken] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, [token]);
+
+  const removeToken = () => {
+    localStorage.removeItem('token');
+    setToken('');
+    navigate('/login');
+  };
+  console.log(token);
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -30,6 +45,11 @@ const Menu = () => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        {token && (
+          <button type="button" onClick={removeToken}>
+            Logout
+          </button>
+        )}
       </Container>
     </Navbar>
   );

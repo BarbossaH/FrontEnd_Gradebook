@@ -1,13 +1,16 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table from './utils/Table';
+import { useNavigate } from 'react-router-dom';
 const Enrollment = () => {
+  const navigate = useNavigate();
   const [token, setToken] = useState('');
   const [enrollment, setEnrollment] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setToken(localStorage.getItem('token'));
-
+    console.log(token);
     // const axios = require('axios');
     if (token) {
       let config = {
@@ -31,6 +34,7 @@ const Enrollment = () => {
     }
   }, [token]);
   // {console.log(enrollment);}
+
   return <div>{loading ? <p>Loading...</p> : <Table data={enrollment} />}</div>;
 };
 export default Enrollment;
