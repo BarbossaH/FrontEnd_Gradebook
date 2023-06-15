@@ -5,6 +5,12 @@ const Semester = () => {
   const [token, setToken] = useState('');
   const [semester, setSemester] = useState([]);
   const [loading, setLoading] = useState(true);
+  const handleDelete = (id) => {
+    console.log('delete data', id);
+  };
+  const handleModify = (id) => {
+    console.log('modify data', id);
+  };
   useEffect(() => {
     setToken(localStorage.getItem('token'));
 
@@ -31,6 +37,18 @@ const Semester = () => {
     }
   }, [token]);
 
-  return <div>{loading ? <p>Loading...</p> : <Table data={semester} />}</div>;
+  return (
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Table
+          data={semester}
+          handleDelete={handleDelete}
+          handleModify={handleModify}
+        />
+      )}
+    </div>
+  );
 };
 export default Semester;

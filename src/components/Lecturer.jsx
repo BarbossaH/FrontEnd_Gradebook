@@ -5,9 +5,16 @@ const Lecturers = () => {
   const [token, setToken] = useState('');
   const [lecturers, setLecturers] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleDelete = (id) => {
+    console.log('delete data', id);
+  };
+  const handleModify = (id) => {
+    console.log('modify data', id);
+  };
+
   useEffect(() => {
     setToken(localStorage.getItem('token'));
-
     // const axios = require('axios');
     if (token) {
       let config = {
@@ -31,6 +38,18 @@ const Lecturers = () => {
     }
   }, [token]);
 
-  return <div>{loading ? <p>Loading...</p> : <Table data={lecturers} />}</div>;
+  return (
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Table
+          data={lecturers}
+          handleDelete={handleDelete}
+          handleModify={handleModify}
+        />
+      )}
+    </div>
+  );
 };
 export default Lecturers;

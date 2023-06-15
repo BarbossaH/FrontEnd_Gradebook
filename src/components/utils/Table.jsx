@@ -1,4 +1,5 @@
-const Table = ({ data }) => {
+const Table = ({ data, handleDelete, handleModify }) => {
+  // console.log(handleDelete);
   if (!data.length) {
     return <p>No data</p>;
   }
@@ -10,6 +11,7 @@ const Table = ({ data }) => {
           {columnNames.map((columnName) => (
             <th key={columnName}>{columnName.toUpperCase()}</th>
           ))}
+          <th>Operation</th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +20,20 @@ const Table = ({ data }) => {
             {columnNames.map((columnName) => (
               <td key={columnName}>{item[columnName]}</td>
             ))}
+            <td>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleModify(item.id)}
+              >
+                Modify
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => handleDelete(item.id)}
+              >
+                Delete
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>

@@ -5,6 +5,13 @@ const Class = () => {
   const [token, setToken] = useState('');
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleDelete = (id) => {
+    console.log('delete data', id);
+  };
+  const handleModify = (id) => {
+    console.log('modify data', id);
+  };
   useEffect(() => {
     setToken(localStorage.getItem('token'));
 
@@ -31,6 +38,18 @@ const Class = () => {
     }
   }, [token]);
 
-  return <div>{loading ? <p>Loading...</p> : <Table data={classes} />}</div>;
+  return (
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Table
+          data={classes}
+          handleDelete={handleDelete}
+          handleModify={handleModify}
+        />
+      )}
+    </div>
+  );
 };
 export default Class;

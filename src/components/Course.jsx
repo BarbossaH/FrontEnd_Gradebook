@@ -5,6 +5,13 @@ const Course = () => {
   const [token, setToken] = useState('');
   const [course, setCourse] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleDelete = (id) => {
+    console.log('delete data', id);
+  };
+  const handleModify = (id) => {
+    console.log('modify data', id);
+  };
   useEffect(() => {
     setToken(localStorage.getItem('token'));
 
@@ -31,6 +38,18 @@ const Course = () => {
     }
   }, [token]);
 
-  return <div>{loading ? <p>Loading...</p> : <Table data={course} />}</div>;
+  return (
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Table
+          data={course}
+          handleDelete={handleDelete}
+          handleModify={handleModify}
+        />
+      )}
+    </div>
+  );
 };
 export default Course;

@@ -1,6 +1,6 @@
 // import './App.css';
 import Layout from './components/Layout';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Students from './components/Students';
 import UploadFile from './components/UploadFile';
 import Login from './components/Login';
@@ -9,9 +9,19 @@ import Semester from './components/Semester';
 import Class from './components/Class';
 import Enrollment from './components/Enrollment';
 import Course from './components/Course';
-
+import { useEffect, useState } from 'react';
 // import Nav from './components/Nav';
 function App() {
+  const [token, setToken] = useState(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    } else {
+      navigate('/login');
+    }
+  }, []);
   return (
     <div className="container">
       <Layout>

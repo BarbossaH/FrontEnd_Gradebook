@@ -3,11 +3,16 @@ import { useEffect, useState } from 'react';
 import Table from './utils/Table';
 import { useNavigate } from 'react-router-dom';
 const Enrollment = () => {
-  const navigate = useNavigate();
   const [token, setToken] = useState('');
   const [enrollment, setEnrollment] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const handleDelete = (id) => {
+    console.log('delete data', id);
+  };
+  const handleModify = (id) => {
+    console.log('modify data', id);
+  };
   useEffect(() => {
     setToken(localStorage.getItem('token'));
     console.log(token);
@@ -35,6 +40,18 @@ const Enrollment = () => {
   }, [token]);
   // {console.log(enrollment);}
 
-  return <div>{loading ? <p>Loading...</p> : <Table data={enrollment} />}</div>;
+  return (
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Table
+          data={enrollment}
+          handleDelete={handleDelete}
+          handleModify={handleModify}
+        />
+      )}
+    </div>
+  );
 };
 export default Enrollment;

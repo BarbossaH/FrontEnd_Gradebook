@@ -1,23 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
 const Menu = () => {
-  const [token, setToken] = useState('');
   const navigate = useNavigate();
-
+  const [token, setToken] = useState();
   useEffect(() => {
     setToken(localStorage.getItem('token'));
-  }, [token]);
-
+  });
   const removeToken = () => {
-    localStorage.removeItem('token');
-    setToken('');
+    setToken(localStorage.removeItem('token'));
     navigate('/login');
   };
-  console.log(token);
   return (
     <Navbar bg="light" expand="lg">
       <Container>
