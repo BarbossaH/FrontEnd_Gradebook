@@ -10,6 +10,7 @@ import Class from './components/Class';
 import Enrollment from './components/Enrollment';
 import Course from './components/Course';
 import { useEffect, useState } from 'react';
+import FormForEditor from './components/utils/FormForEditor';
 // import Nav from './components/Nav';
 function App() {
   const [token, setToken] = useState(null);
@@ -30,12 +31,48 @@ function App() {
           <Route path="/">
             <Route index element={<Enrollment />} />
             <Route path="upload" element={<UploadFile />} />
-            <Route path="/students" element={<Students />} />
-            <Route path="/lecturers" element={<Lecturers />} />
-            <Route path="/semester" element={<Semester />} />
-            <Route path="/class" element={<Class />} />
-            <Route path="/enrollment" element={<Enrollment />} />
-            <Route path="/course" element={<Course />} />
+            <Route path="/students/">
+              <Route index element={<Students />} />
+              <Route
+                path=":id/edit"
+                element={<FormForEditor type="students" />}
+              />
+            </Route>
+
+            <Route path="/lecturers/">
+              <Route index element={<Lecturers />} />
+              <Route
+                path=":id/edit"
+                element={<FormForEditor type="lecturers" />}
+              />
+            </Route>
+            <Route path="/semester">
+              <Route index element={<Semester />} />
+              <Route
+                path=":id/edit"
+                element={<FormForEditor type="semester" />}
+              />
+            </Route>
+
+            <Route path="/class">
+              <Route index element={<Class />} />
+              <Route path=":id/edit" element={<FormForEditor type="class" />} />
+            </Route>
+
+            <Route path="/enrollment">
+              <Route index element={<Enrollment />} />
+              <Route
+                path=":id/edit"
+                element={<FormForEditor type="enrollment" />}
+              />
+            </Route>
+            <Route path="/course">
+              <Route index element={<Course />} />
+              <Route
+                path=":id/edit"
+                element={<FormForEditor type="course" />}
+              />
+            </Route>
           </Route>
         </Routes>
       </Layout>

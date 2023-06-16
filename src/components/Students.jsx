@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table from './utils/Table';
+import { useNavigate } from 'react-router-dom';
 const Students = () => {
+  const navigate = useNavigate();
   const [token, setToken] = useState('');
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,12 +11,11 @@ const Students = () => {
     console.log('delete data', id);
   };
   const handleModify = (id) => {
+    navigate(`${id}/edit`);
     console.log('modify data', id);
   };
   useEffect(() => {
     setToken(localStorage.getItem('token'));
-
-    // const axios = require('axios');
     if (token) {
       let config = {
         method: 'get',

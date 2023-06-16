@@ -1,16 +1,22 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table from './utils/Table';
+import { useNavigate } from 'react-router-dom';
+// import FormForEditor from './utils/FormForEditor';
 const Lecturers = () => {
+  const navigate = useNavigate();
   const [token, setToken] = useState('');
   const [lecturers, setLecturers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isEditing, setEditing] = useState(false);
 
   const handleDelete = (id) => {
     console.log('delete data', id);
   };
   const handleModify = (id) => {
+    navigate(`${id}/edit`);
     console.log('modify data', id);
+    setEditing(!isEditing);
   };
 
   useEffect(() => {
@@ -49,6 +55,7 @@ const Lecturers = () => {
           handleModify={handleModify}
         />
       )}
+      {/* {isEditing && <FormForEditor />} */}
     </div>
   );
 };
