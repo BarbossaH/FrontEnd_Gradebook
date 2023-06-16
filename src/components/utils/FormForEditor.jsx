@@ -2,11 +2,12 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function FormForEditor({ type }) {
+  const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id, type);
+  // console.log(id, type);
 
   const [data, setData] = useState(null);
   const [token, setToken] = useState(null);
@@ -41,8 +42,32 @@ function FormForEditor({ type }) {
   if (data) {
     keys = Object.keys(data);
   }
-  console.log(data);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(data);
+    if (data && token) {
+      let config = {
+        method: 'put',
+        maxBodyLength: Infinity,
+        url: `http://127.0.0.1:8000/api/${type}/${id}/edit/`,
+        headers: {
+          Authorization: 'token ' + token,
+        },
+        data,
+      };
 
+      axios(config)
+        .then(function (response) {
+          console.log(response.data);
+          // console.log(JSON.stringify(response.data));
+          // console.log(type);
+          navigate(`/${type}/`);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  };
   return (
     <div>
       {loading ? (
@@ -54,7 +79,7 @@ function FormForEditor({ type }) {
               <Form.Group className="mb-3" key={key}>
                 <Form.Label>{key.toUpperCase()}</Form.Label>
                 <Form.Control
-                  type="email"
+                  type="text"
                   onChange={(e) => {
                     // console.log(data);
                     console.log(e.target.value);
@@ -67,7 +92,7 @@ function FormForEditor({ type }) {
                 />
               </Form.Group>
             ))}
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
             Submit
           </Button>
         </Form>
