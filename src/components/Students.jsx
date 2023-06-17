@@ -12,7 +12,6 @@ const Students = () => {
   };
   const handleModify = (id) => {
     navigate(`${id}/edit`);
-    console.log('modify data', id);
   };
   useEffect(() => {
     setToken(localStorage.getItem('token'));
@@ -43,11 +42,14 @@ const Students = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <Table
-          data={students}
-          handleDelete={handleDelete}
-          handleModify={handleModify}
-        />
+        <>
+          <button className="btn btn-primary">Add Student</button>
+          <Table
+            data={students}
+            handleDelete={handleDelete}
+            handleModify={handleModify}
+          />
+        </>
       )}
     </div>
   );

@@ -38,7 +38,6 @@ function App() {
                 element={<FormForEditor type="students" />}
               />
             </Route>
-
             <Route path="/lecturers/">
               <Route index element={<Lecturers />} />
               <Route

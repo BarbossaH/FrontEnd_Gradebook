@@ -41,6 +41,7 @@ function FormForEditor({ type }) {
   let keys = [];
   if (data) {
     keys = Object.keys(data);
+    console.log(keys);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,7 +80,9 @@ function FormForEditor({ type }) {
               <Form.Group className="mb-3" key={key}>
                 <Form.Label>{key.toUpperCase()}</Form.Label>
                 <Form.Control
-                  type="text"
+                  type={
+                    key === 'email' ? 'email' : key === 'DOB' ? 'date' : 'text'
+                  }
                   onChange={(e) => {
                     // console.log(data);
                     console.log(e.target.value);
