@@ -11,6 +11,7 @@ import Enrollment from './components/Enrollment';
 import Course from './components/Course';
 import { useEffect, useState } from 'react';
 import FormForEditor from './components/utils/FormForEditor';
+import FormForAdd from './components/utils/FormForAdd';
 // import Nav from './components/Nav';
 function App() {
   const [token, setToken] = useState(null);
@@ -28,6 +29,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/add" element={<FormForAdd />} /> */}
+
           <Route path="/">
             <Route index element={<Enrollment />} />
             <Route path="upload" element={<UploadFile />} />
@@ -37,13 +40,16 @@ function App() {
                 path=":id/edit"
                 element={<FormForEditor type="students" />}
               />
+              <Route path="add" element={<FormForAdd type="addstudent" />} />
             </Route>
+
             <Route path="/lecturers/">
               <Route index element={<Lecturers />} />
               <Route
                 path=":id/edit"
                 element={<FormForEditor type="lecturers" />}
               />
+              <Route path="add" element={<FormForAdd type="addlecturer" />} />
             </Route>
             <Route path="/semester">
               <Route index element={<Semester />} />
@@ -51,11 +57,13 @@ function App() {
                 path=":id/edit"
                 element={<FormForEditor type="semester" />}
               />
+              <Route path="add" element={<FormForAdd type="addsemester" />} />
             </Route>
 
             <Route path="/class">
               <Route index element={<Class />} />
               <Route path=":id/edit" element={<FormForEditor type="class" />} />
+              <Route path="add" element={<FormForAdd type="addclass" />} />
             </Route>
 
             <Route path="/enrollment">
@@ -64,6 +72,10 @@ function App() {
                 path=":id/edit"
                 element={<FormForEditor type="enrollment" />}
               />
+              <Route
+                path="add"
+                element={<FormForAdd type="addstudentenrollment" />}
+              />
             </Route>
             <Route path="/course">
               <Route index element={<Course />} />
@@ -71,6 +83,7 @@ function App() {
                 path=":id/edit"
                 element={<FormForEditor type="course" />}
               />
+              <Route path="add" element={<FormForAdd type="addcourse" />} />
             </Route>
           </Route>
         </Routes>
