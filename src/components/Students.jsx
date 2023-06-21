@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table from './utils/Table';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+const keys = ['username', 'first_name', 'last_name', 'email', 'DOB'];
 
 const Students = () => {
   const navigate = useNavigate();
@@ -42,11 +44,7 @@ const Students = () => {
       axios
         .request(config)
         .then((response) => {
-          // console.log(response.data);
-          // setStudents(response.data);
-          // setLoading(false);
           fetchData();
-          // console.log(JSON.stringify(response.data));
         })
         .catch((error) => {
           console.log(error);
@@ -58,10 +56,7 @@ const Students = () => {
   };
 
   const handleAdd = () => {
-    if (students) {
-      const keys = Object.keys(students[0]);
-      if (keys.length > 0) navigate('add', { state: keys });
-    }
+    navigate('add', { state: keys });
   };
 
   useEffect(() => {

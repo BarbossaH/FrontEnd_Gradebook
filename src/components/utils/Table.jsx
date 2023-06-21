@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 
 const Table = ({ data, handleDelete, handleModify, handleAdd }) => {
-  console.log(data);
   if (!data.length) {
-    return <p>No data</p>;
+    return (
+      <>
+        <button className={'btn btn-primary'} onClick={handleAdd}>
+          Add
+        </button>
+        <p>No data</p>
+      </>
+    );
   }
   const columnNames = Object.keys(data[0]);
-  console.log(typeof columnNames);
   return (
     <>
       <button className={'btn btn-primary'} onClick={handleAdd}>

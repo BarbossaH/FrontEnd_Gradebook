@@ -6,21 +6,34 @@ const Course = () => {
   const [course, setCourse] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const handleDelete = (id) => {
-    console.log('delete data', id);
+  const fetchData = () => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'http://127.0.0.1:8000/api/lecturers/',
+      headers: {
+        Authorization: 'token ' + token,
+      },
+    };
+    axios
+      .request(config)
+      .then((response) => {
+        setCourse(response.data);
+        console.log(response.data);
+        setLoading(false);
+        // console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-  const handleModify = (id) => {
-    console.log('modify data', id);
-  };
-  useEffect(() => {
-    setToken(localStorage.getItem('token'));
 
-    // const axios = require('axios');
+  const handleDelete = (id) => {
     if (token) {
       let config = {
-        method: 'get',
+        method: 'delete',
         maxBodyLength: Infinity,
-        url: 'http://127.0.0.1:8000/api/course/',
+        url: `http://127.0.0.1:8000/api/course/${id}`,
         headers: {
           Authorization: 'token ' + token,
         },
@@ -28,13 +41,25 @@ const Course = () => {
       axios
         .request(config)
         .then((response) => {
-          setCourse(response.data);
-          setLoading(false);
-          // console.log(JSON.stringify(response.data));
+          fetchData();
         })
         .catch((error) => {
           console.log(error);
         });
+    }
+  };
+  const handleAdd = () => {
+    navigate('add', { state: keys });
+  };
+  const handleModify = (id) => {
+    navigate(`${id}/edit`);
+  };
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+
+    // const axios = require('axios');
+    if (token) {
+      fetchData();
     }
   }, [token]);
 
@@ -47,6 +72,7 @@ const Course = () => {
           data={course}
           handleDelete={handleDelete}
           handleModify={handleModify}
+          handleAdd={handleAdd}
         />
       )}
     </div>
