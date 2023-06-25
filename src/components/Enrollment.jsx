@@ -2,7 +2,16 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table from './utils/Table';
 import { useNavigate } from 'react-router-dom';
+
+const keys = [
+  'enrolled_class',
+  'enrolled_student',
+  'enrollTime',
+  'gradeTime',
+  'marks',
+];
 const Enrollment = () => {
+  const navigate = useNavigate();
   const [token, setToken] = useState('');
   const [enrollment, setEnrollment] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +19,7 @@ const Enrollment = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:8000/api/lecturers/',
+      url: 'http://127.0.0.1:8000/api/studentenrollment/',
       headers: {
         Authorization: 'token ' + token,
       },
@@ -48,7 +57,7 @@ const Enrollment = () => {
     }
   };
   const handleModify = (id) => {
-    console.log('modify data', id);
+    navigate(`${id}/edit`);
   };
   const handleAdd = () => {
     navigate('add', { state: keys });

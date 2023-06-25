@@ -66,11 +66,11 @@ function App() {
               <Route path="add" element={<FormForAdd type="addclass" />} />
             </Route>
 
-            <Route path="/enrollment">
+            <Route path="/studentenrollment">
               <Route index element={<Enrollment />} />
               <Route
                 path=":id/edit"
-                element={<FormForEditor type="enrollment" />}
+                element={<FormForEditor type="studentenrollment" />}
               />
               <Route
                 path="add"

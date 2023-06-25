@@ -10,7 +10,7 @@ const Course = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:8000/api/lecturers/',
+      url: 'http://127.0.0.1:8000/api/course/',
       headers: {
         Authorization: 'token ' + token,
       },
