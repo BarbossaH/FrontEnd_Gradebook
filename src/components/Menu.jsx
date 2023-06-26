@@ -26,7 +26,7 @@ const Menu = () => {
             <Nav.Link href="/students">Students</Nav.Link>
             <Nav.Link href="/semester">Semester</Nav.Link>
             <Nav.Link href="/class">Class</Nav.Link>
-            <Nav.Link href="/enrollment">Enrollment</Nav.Link>
+            <Nav.Link href="/studentenrollment">Enrollment</Nav.Link>
             <Nav.Link href="/course">Course</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 const Table = ({ data, handleDelete, handleModify, handleAdd }) => {
   if (!data.length) {
     return (
@@ -45,6 +43,21 @@ const Table = ({ data, handleDelete, handleModify, handleAdd }) => {
                 >
                   Delete
                 </button>
+                {columnNames.map((columnName) =>
+                  columnName === 'mark' ? (
+                    <button
+                      key={columnName}
+                      className="btn btn-primary"
+                      onClick={() => {
+                        console.log(item.id);
+                      }}
+                    >
+                      Email
+                    </button>
+                  ) : (
+                    ''
+                  )
+                )}
               </td>
             </tr>
           ))}
