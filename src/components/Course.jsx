@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table from './utils/Table';
+import { useNavigate } from 'react-router-dom';
+
+const keys = ['code', 'name', 'semesters'];
 const Course = () => {
+  const navigate = useNavigate();
   const [token, setToken] = useState('');
-  const [course, setCourse] = useState([]);
+  const [course, setCourse] = useState();
   const [loading, setLoading] = useState(true);
 
   const fetchData = () => {
